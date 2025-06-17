@@ -4,17 +4,22 @@ import Login from "./Pages/Login";
 import RegisterPage from "./Pages/RegisterPage";
 import MainLayout from "./Layout/MainLayout";
 import AuthLayout from "./Layout/AuthLayout";
+import About from "./Pages/About";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <AuthLayout />,
     // errorElement
     children: [
       {
         index: true,
         element: <Home />,
       },
+      {
+        path: "about",
+        element: <About />
+      }
     ],
   },
 
@@ -33,4 +38,9 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: "/dashboard",
+    element: <MainLayout />
+  }
 ]);

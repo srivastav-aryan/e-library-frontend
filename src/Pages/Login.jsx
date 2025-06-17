@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import {
   Card,
   CardAction,
@@ -10,52 +10,104 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-
-import {Link} from 'react-router-dom'
+} from "@/components/ui/card";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { loginMethod } from "../http/api";
+import { LoaderCircle } from "lucide-react";
 
 function Login() {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const Navigate = useNavigate();
+
+  const loginMutation = useMutation({
+    mutationFn: loginMethod,
+    onSuccess: (response) => {
+        // const { authToken } = response.data; use of token will be implemented later and adding route protection for below redirect
+      Navigate("/dashboard");
+    },
+
+    onError: (err) => {
+      console.log(`error occured while loging in :-- ${err}`);
+      alert(
+        "Error in login: " +
+          (err.response?.data?.message ||
+            err.message ||
+            "Please check your credentials.")
+      );
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    loginMutation.mutate(data);
+  };
+
   return (
-    <div className='flex  justify-center items-center h-screen'>
-        <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
-        <CardDescription>
-          Enter your email below to login to your account
-        </CardDescription>
-        <CardAction>
-          <Button variant="link"><Link to={'/register'}>Sign Up</Link></Button>
-        </CardAction>
-      </CardHeader>
-      <CardContent>
-        <form>
-          <div className="flex flex-col gap-6">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+    <main className="flex  justify-center items-center h-screen">
+      <form onSubmit={handleSubmit} className="w-full">
+        <Card className="max-w-sm mx-auto">
+          <CardHeader>
+            <CardTitle>Login to your account</CardTitle>
+            <CardDescription>
+              Enter your email below to login to your account
+            </CardDescription>
+            <CardAction>
+              <Button variant="link">
+                <Link to={"/auth/register"}>Sign Up</Link>
+              </Button>
+            </CardAction>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col gap-6">
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                  ref={emailRef}
+                />
               </div>
-              <Input id="password" type="password" required />
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="password">Password</Label>
+                </div>
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  ref={passwordRef}
+                />
+              </div>
             </div>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
-      </CardFooter>
-    </Card>
-    </div>
-  )
+          </CardContent>
+          <CardFooter className="flex-col gap-2">
+            <Button
+              type="submit"
+              className="w-full "
+              disabled={loginMutation.isPending}
+            >
+              {loginMutation.isPending ? (
+                <span className="flex gap-2.5 items-center">
+                  <LoaderCircle className="animate-spin" />
+                  Sign in
+                </span>
+              ) : (
+                "Sign in  "
+              )}
+            </Button>
+          </CardFooter>
+        </Card>
+      </form>
+    </main>
+  );
 }
 
-export default Login
+export default Login;

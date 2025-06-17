@@ -9,9 +9,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router-dom";
-import { Home, Info, Library, Book } from "lucide-react";
+import { Home, Info, Library, Book , LogOut , LogIn } from "lucide-react";
 
 const menuItems = [
   {
@@ -33,7 +34,7 @@ function AppsideBar() {
         <Book />
         <h1 className="text-2xl font-bold">Coder's Book</h1>
       </SidebarHeader>
-      <SidebarContent >
+      <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application Nav</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -64,10 +65,26 @@ function AppsideBar() {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="">
+                    <Library />
+                    <span className="text-[1.2rem]">my Books</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <div>
+          <div>
+              <button className="flex gap-2"><Link to={"/login"}><LogIn />Log In</Link></button>
+          </div>
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }
