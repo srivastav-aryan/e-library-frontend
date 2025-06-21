@@ -1,5 +1,4 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import {  Moon, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "./ui/sidebar";
 import { SearchForm } from "@/components/ui/search-form";
@@ -18,10 +17,7 @@ function Header() {
       </div>
       <div className="flex items-center gap-2.5">
         <Button className=" border-2  " variant={"outline"}>
-          <Moon className="text-black" />
-        </Button>
-        <Button className=" border-2 " variant={"outline"}>
-          <User />
+          Logout
         </Button>
       </div>
     </header>

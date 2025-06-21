@@ -9,10 +9,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router-dom";
-import { Home, Info, Library, Book , LogOut , LogIn } from "lucide-react";
+import { Home, Info, Library, Book, LogOut, LogIn } from "lucide-react";
 
 const menuItems = [
   {
@@ -78,13 +77,6 @@ function AppsideBar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
-        <div>
-          <div>
-              <button className="flex gap-2"><Link to={"/login"}><LogIn />Log In</Link></button>
-          </div>
-        </div>
-      </SidebarFooter>
     </Sidebar>
   );
 }

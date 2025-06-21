@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { loginMethod } from "../http/api";
 import { LoaderCircle } from "lucide-react";
+import { saveAuthInfoFromLocalStorage } from "../utils/authUtils";
 
 function Login() {
   const emailRef = useRef(null);
@@ -24,7 +25,8 @@ function Login() {
   const loginMutation = useMutation({
     mutationFn: loginMethod,
     onSuccess: (response) => {
-        // const { authToken } = response.data; use of token will be implemented later and adding route protection for below redirect
+      const { authToken } = response.data;
+      saveAuthInfoFromLocalStorage(authToken);
       Navigate("/dashboard");
     },
 

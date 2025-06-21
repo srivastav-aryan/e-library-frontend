@@ -13,6 +13,7 @@ import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { registerMethod } from "../http/api";
 import { LoaderCircle } from "lucide-react";
+import { saveAuthInfoFromLocalStorage } from "../utils/authUtils";
 
 function RegisterPage() {
   const userNameRef = useRef(null);
@@ -24,7 +25,8 @@ function RegisterPage() {
   const registerMutation = useMutation({
     mutationFn: registerMethod,
     onSuccess: (response) => {
-      // const { authToken } = response.data; use of token will be implemented later and adding route protection for below redirect
+      const { authToken } = response.data;
+      saveAuthInfoFromLocalStorage(authToken);
       Navigate("/dashboard");
     },
 
