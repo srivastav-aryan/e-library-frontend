@@ -20,16 +20,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllBooks } from "../../http/api";
 
 function Books() {
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["books"],
     queryFn: getAllBooks,
   });
 
-  console.log(data);
-
   return (
     <>
-      <Breadcrumb>
+      <div className="flex items-center justify-between px-5 pt-1 pb-6">
+        <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
             <Link to={"/dashboard/home"}>Home</Link>
@@ -41,10 +40,14 @@ function Books() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <main>
+
+      <Link to={"/dashboard/books/create"}><Button>Add Book</Button></Link>
+      </div>
+
+      <main className="px-3">
         <Table>
           <TableCaption>A list of all Books</TableCaption>
-          <TableHeader>
+          <TableHeader className="border-t-1">
             <TableRow>
               <TableHead className="w-[100px]">Author</TableHead>
               <TableHead>Genre</TableHead>
@@ -63,14 +66,14 @@ function Books() {
                   </TableCell>
                   <TableCell>{book.genere}</TableCell>
                   <TableCell>
-                    <div className="flex justify-between gap-2 items-center">
-                      <span className="mr-5">{book.title}</span>
+                    <div className="flex j gap-2 items-center">
                       <img
                         src={book.coverImage}
                         alt="book-cover-img"
                         height={100}
                         width={130}
                       />
+                      <span className="mr-5">{book.title}</span>
                     </div>
                   </TableCell>
                   <TableCell>

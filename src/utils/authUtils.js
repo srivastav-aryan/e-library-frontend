@@ -1,5 +1,6 @@
 import { setCredentials } from "../features/auth/authSlice.js";
 import { store } from "../Store/store.js";
+import { jwtDecode } from "jwt-decode";
 
 export const saveAuthInfoToLocalStorage = (token) => {
   try {
@@ -31,5 +32,14 @@ export const removeAuthInfoFromLocalStorage = () => {
     console.log(
       `Error in removing the token and user from localstorage : ${error}`
     );
+  }
+};
+
+export const decodeJwt = (token) => {
+  try {
+    const decodedToken = jwtDecode(token);
+    return decodedToken.sub;
+  } catch (error) {
+    console.log(`Error in decoding the token : ${error}`);
   }
 };
