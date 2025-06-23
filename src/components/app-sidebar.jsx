@@ -58,7 +58,7 @@ function AppsideBar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="">
+                  <Link to={"/dashboard/home"}>
                     <Home />
                     <span className="text-[1.2rem]">home</span>
                   </Link>
@@ -67,7 +67,7 @@ function AppsideBar() {
 
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="">
+                  <Link to={"/dashboard/books"}>
                     <Library />
                     <span className="text-[1.2rem]">Books</span>
                   </Link>
