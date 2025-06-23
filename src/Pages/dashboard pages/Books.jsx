@@ -16,8 +16,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
+import { getAllBooks } from "../../http/api";
 
 function Books() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["books"],
+    queryFn: getAllBooks,
+  });
+
+  console.log(data);
+
   return (
     <>
       <Breadcrumb>
@@ -40,57 +49,46 @@ function Books() {
               <TableHead className="w-[100px]">Author</TableHead>
               <TableHead>Genre</TableHead>
               <TableHead>Title</TableHead>
+              <TableHead>Read now</TableHead>
               <TableHead className="text-right">Action</TableHead>
               <TableHead className="text-right">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">
-                <div>
-                  <img src="" alt="" />
-                  <span className="mr-5">Aryans love story</span>
-                </div>
-              </TableCell>
-              <TableCell>Rom-Com</TableCell>
-              <TableCell>Credit Card</TableCell>
-              <TableCell className="text-right">
-                <Link>
-                  <Button>Edit</Button>
-                </Link>
-              </TableCell>
-              <TableCell className="text-right">
-                <Link>
-                  <Button>Delete</Button>
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="font-medium">Aryan</TableCell>
-              <TableCell>Rom-Com</TableCell>
-              <TableCell>
-                <div className="flex justify-start gap-2 items-center">
-                  <span className="mr-5">Aryans love story</span>
-                  <img
-                    src="../../../Image_created_with_a_mobile_phone.png"
-                    alt="book-cover-img"
-                    height={100}
-                    width={130}
-                  />
-                </div>
-              </TableCell>
-              <TableCell className="text-right">
-                <Link>
-                  <Button>Edit</Button>
-                </Link>
-              </TableCell>
-              <TableCell className="text-right">
-                <Link>
-                  <Button>Delete</Button>
-                </Link>
-              </TableCell>
-            </TableRow>
+            {data?.data.map((book) => {
+              return (
+                <TableRow key={book._id}>
+                  <TableCell className="font-medium">
+                    {book.authorName}
+                  </TableCell>
+                  <TableCell>{book.genere}</TableCell>
+                  <TableCell>
+                    <div className="flex justify-between gap-2 items-center">
+                      <span className="mr-5">{book.title}</span>
+                      <img
+                        src={book.coverImage}
+                        alt="book-cover-img"
+                        height={100}
+                        width={130}
+                      />
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <a href={book.file}>Read here</a>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Link>
+                      <Button>Edit</Button>
+                    </Link>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Link>
+                      <Button>Delete</Button>
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </main>

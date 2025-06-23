@@ -10,3 +10,5 @@ const api = axios.create({
 export const loginMethod = (data) => api.post("/api/users/login", data);
 
 export const registerMethod = (data) => api.post("/api/users/register", data);
+
+export const getAllBooks = () => api.get("/api/books/");
