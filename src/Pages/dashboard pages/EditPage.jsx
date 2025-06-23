@@ -98,7 +98,7 @@ function EditPage() {
         </Link>
       </div>
 
-      <main>
+      <main className="flex justify-center">
         <form onSubmit={handleSubmit} className="sm:w-[70%] md:w-1/2">
           <Card>
             <CardHeader>

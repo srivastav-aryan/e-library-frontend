@@ -18,11 +18,44 @@ import {
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { getAllBooks } from "../../http/api";
+import { useMutation } from "@tanstack/react-query";
+import { deleteBook } from "../../http/api";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { LoaderCircle } from "lucide-react";
+import { useState } from "react";
 
 function Books() {
+  const [deletingBookId, setDeletingBookId] = useState(null);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { data } = useQuery({
     queryKey: ["books"],
     queryFn: getAllBooks,
+  });
+
+  const deleteBookMutation = useMutation({
+    mutationFn: deleteBook,
+    onMutate: (bookId) => {
+      setDeletingBookId(bookId);
+    },
+    onSettled: () => {
+      setDeletingBookId(null);
+    },
+    onSuccess: () => {
+      alert("Book deleted successfully.");
+      navigate("/dashboard/books");
+      queryClient.invalidateQueries({ queryKey: ["books"] });
+    },
+    onError: (err) => {
+      console.log(`error occured while deleting book :-- ${err}`);
+      alert(
+        "Error in deleting book: " +
+          (err.response?.data?.message ||
+            err.message ||
+            "Please check your credentials.")
+      );
+    },
   });
 
   return (
@@ -86,9 +119,7 @@ function Books() {
                     </Link>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Link>
-                      <Button>Delete</Button>
-                    </Link>
+                      <Button onClick={() => deleteBookMutation.mutate(book._id)} disabled={deletingBookId === book._id}>{deletingBookId === book._id ? <LoaderCircle className="animate-spin" /> : "Delete"}</Button>
                   </TableCell>
                 </TableRow>
               );

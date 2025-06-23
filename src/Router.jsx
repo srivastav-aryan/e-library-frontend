@@ -22,8 +22,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: <About />
-      }
+        element: <About />,
+      },
     ],
   },
 
@@ -46,24 +46,24 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <MainLayout />,
-    
+
     children: [
       {
         path: "home",
-        element:<DashboardHomePage />
+        element: <DashboardHomePage />,
       },
       {
         path: "books",
-        element:<Books />
+        element: <Books />,
       },
-       {
+      {
         path: "books/create",
-        element:<CreateBook />
+        element: <CreateBook />,
       },
       {
         path: "books/edit/:id",
-        element:<EditPage />
-      }
-    ]
-  }
+        element: <EditPage />,
+      },
+    ],
+  },
 ]);

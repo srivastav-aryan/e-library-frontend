@@ -13,7 +13,7 @@ export const loginMethod = (data) => api.post("/api/users/login", data);
 export const registerMethod = (data) => api.post("/api/users/register", data);
 
 export const createBook = (data) => api.post("/api/books/" , data , {
-  headers: {
+  headers: { 
     "Content-Type": "multipart/form-data",
     'Authorization': `Bearer ${store.getState().auth.token}`
   }
@@ -22,6 +22,12 @@ export const createBook = (data) => api.post("/api/books/" , data , {
 export const updateBook = (data , id) => api.patch(`/api/books/${id}` , data , {
   headers: {
     "Content-Type": "multipart/form-data",
+    'Authorization': `Bearer ${store.getState().auth.token}`
+  }
+})
+
+export const deleteBook = (id) => api.delete(`/api/books/${id}` , {
+  headers: {
     'Authorization': `Bearer ${store.getState().auth.token}`
   }
 })
