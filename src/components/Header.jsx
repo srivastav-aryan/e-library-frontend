@@ -1,7 +1,7 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
 import { useSidebar } from "./ui/sidebar";
 import { SearchForm } from "@/components/ui/search-form";
+import LogoutButton from "./LogoutButton";
 
 function Header() {
   const { state, isMobile } = useSidebar();
@@ -16,9 +16,7 @@ function Header() {
         <SearchForm className="md:w-[17rem]" />
       </div>
       <div className="flex items-center gap-2.5">
-        <Button className=" border-2  " variant={"outline"}>
-          Logout
-        </Button>
+        <LogoutButton />
       </div>
     </header>
   );

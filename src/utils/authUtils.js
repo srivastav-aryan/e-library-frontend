@@ -1,7 +1,7 @@
 import { setCredentials } from "../features/auth/authSlice";
 import { store } from "../Store/store.js";
 
-export const saveAuthInfoFromLocalStorage = (token) => {
+export const saveAuthInfoToLocalStorage = (token) => {
   try {
     localStorage.setItem("accessToken", token);
   } catch (error) {

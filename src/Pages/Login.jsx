@@ -15,7 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { loginMethod } from "../http/api";
 import { LoaderCircle } from "lucide-react";
-import { saveAuthInfoFromLocalStorage } from "../utils/authUtils";
+import { saveAuthInfoToLocalStorage } from "../utils/authUtils";
 
 function Login() {
   const emailRef = useRef(null);
@@ -26,7 +26,7 @@ function Login() {
     mutationFn: loginMethod,
     onSuccess: (response) => {
       const { authToken } = response.data;
-      saveAuthInfoFromLocalStorage(authToken);
+      saveAuthInfoToLocalStorage(authToken);
       Navigate("/dashboard");
     },
 
