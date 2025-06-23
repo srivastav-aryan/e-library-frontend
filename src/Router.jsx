@@ -6,6 +6,7 @@ import MainLayout from "./Layout/MainLayout";
 import AuthLayout from "./Layout/AuthLayout";
 import About from "./Pages/About";
 import DashboardHomePage from "./Pages/dashboard pages/DashboardHomePage";
+import Books from "./Pages/dashboard pages/Books";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "home",
         element:<DashboardHomePage />
+      },
+      {
+        path: "books",
+        element:<Books />
       }
     ]
   }

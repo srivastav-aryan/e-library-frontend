@@ -7,6 +7,8 @@ import LogoutButton from "./LogoutButton";
 
 function AuthHeader() {
   const isAuthenticated = useSelector(selectIsAuthenticated);
+  console.log(isAuthenticated);
+  
 
   return (
     <header className="flex fixed z-40 left-0 right-0 top-0 border-b-2 py-2 px-6 items-center transition-[left] duration-200 ease-in-out justify-around">

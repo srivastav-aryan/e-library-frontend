@@ -1,9 +1,10 @@
-import { setCredentials } from "../features/auth/authSlice";
+import { setCredentials } from "../features/auth/authSlice.js";
 import { store } from "../Store/store.js";
 
 export const saveAuthInfoToLocalStorage = (token) => {
   try {
     localStorage.setItem("accessToken", token);
+    store.dispatch(setCredentials({ token }));
   } catch (error) {
     console.log(
       `Error in setting the token and user in localstorage : ${error}`

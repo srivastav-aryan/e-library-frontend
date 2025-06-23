@@ -13,9 +13,7 @@ function BreadcrumbComponent() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link to={"/dashboard/home"}>Home</Link>
-          </BreadcrumbLink>
+          <Link to={"/dashboard/home"}>Home</Link>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
