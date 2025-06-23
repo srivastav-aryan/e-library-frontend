@@ -8,6 +8,7 @@ import About from "./Pages/About";
 import DashboardHomePage from "./Pages/dashboard pages/DashboardHomePage";
 import Books from "./Pages/dashboard pages/Books";
 import CreateBook from "./Pages/dashboard pages/CreateBook";
+import EditPage from "./Pages/dashboard pages/EditPage";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
        {
         path: "books/create",
         element:<CreateBook />
+      },
+      {
+        path: "books/edit/:id",
+        element:<EditPage />
       }
     ]
   }

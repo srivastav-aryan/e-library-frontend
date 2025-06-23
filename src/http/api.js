@@ -19,4 +19,11 @@ export const createBook = (data) => api.post("/api/books/" , data , {
   }
 })
 
+export const updateBook = (data , id) => api.patch(`/api/books/${id}` , data , {
+  headers: {
+    "Content-Type": "multipart/form-data",
+    'Authorization': `Bearer ${store.getState().auth.token}`
+  }
+})
+
 export const getAllBooks = () => api.get("/api/books/");

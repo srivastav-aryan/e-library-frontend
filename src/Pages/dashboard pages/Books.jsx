@@ -29,19 +29,20 @@ function Books() {
     <>
       <div className="flex items-center justify-between px-5 pt-1 pb-6">
         <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <Link to={"/dashboard/home"}>Home</Link>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Books</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <Link to={"/dashboard/home"}>Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Books</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
-
-      <Link to={"/dashboard/books/create"}><Button>Add Book</Button></Link>
+        <Link to={"/dashboard/books/create"}>
+          <Button>Add Book</Button>
+        </Link>
       </div>
 
       <main className="px-3">
@@ -80,7 +81,7 @@ function Books() {
                     <a href={book.file}>Read here</a>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Link>
+                    <Link to={`/dashboard/books/edit/${book._id}`}>
                       <Button>Edit</Button>
                     </Link>
                   </TableCell>
