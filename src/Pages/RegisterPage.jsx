@@ -27,7 +27,7 @@ function RegisterPage() {
     onSuccess: (response) => {
       const { accessToken } = response.data;
       saveAuthInfoToLocalStorage(accessToken);
-      Navigate("/dashboard");
+      Navigate("/dashboard/home");
     },
 
     onError: (err) => {

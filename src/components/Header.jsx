@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <header
-      className="flex fixed z-40  right-0 top-0 border-b-2 py-2 px-6 items-center transition-[left] duration-200 ease-in-out justify-between"
+      className="flex fixed z-40 bg-white  right-0 top-0 border-b-2 py-2 px-6 items-center transition-[left] duration-200 ease-in-out justify-between"
       style={{ left: !isMobile && state == "expanded" ? "16rem" : "0" }}
     >
       <div className="flex items-center">

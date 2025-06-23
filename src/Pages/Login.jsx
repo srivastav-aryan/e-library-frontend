@@ -27,7 +27,7 @@ function Login() {
     onSuccess: (response) => {
       const { authToken } = response.data;
       saveAuthInfoToLocalStorage(authToken);
-      Navigate("/dashboard");
+      Navigate("/dashboard/home");
     },
 
     onError: (err) => {
