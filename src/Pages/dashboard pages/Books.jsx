@@ -97,7 +97,7 @@ function Books() {
               {data?.data.map((book) => (
                 <TableRow key={book._id}>
                   <TableCell className="font-medium">{book.authorName}</TableCell>
-                  <TableCell>{book.genre}</TableCell>
+                  <TableCell>{book.genere}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-4">
                       <img
@@ -150,7 +150,7 @@ function Books() {
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold">{book.title}</h3>
                   <p className="text-sm text-gray-600">by {book.authorName}</p>
-                  <p className="mt-1 rounded-full bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-700">{book.genre}</p>
+                  <p className="mt-1 rounded-full bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-700">{book.genere}</p>
                 </div>
               </div>
               <div className="mt-4 flex justify-end gap-2">
