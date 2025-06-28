@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className="home-page">
-      <header className="hero-section text-center py-12 sm:py-16 md:py-24 bg-white">
+      <header className="hero-section text-center py-18 sm:py-16 md:py-24 bg-white">
         <div className="container mx-auto">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Welcome to Your Digital Library</h1>
           <p className="text-base sm:text-lg md:text-xl mb-8 px-4 sm:px-6">Discover, read, and manage your favorite books all in one place.</p>
