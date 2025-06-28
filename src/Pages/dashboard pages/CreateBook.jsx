@@ -24,6 +24,7 @@ import { decodeJwt } from "../../utils/authUtils";
 import { useSelector } from "react-redux";
 import { selectAuthToken } from "../../features/auth/authSlice";
 import { LoaderCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function CreateBook() {
   const accessToken = useSelector(selectAuthToken);
@@ -34,6 +35,8 @@ function CreateBook() {
   const coverImageRef = useRef(null);
   const bookPdfRef = useRef(null);
 
+  const navigate = useNavigate();
+
   const createBookMutation = useMutation({
     mutationFn: createBook,
     onSuccess: () => {
@@ -43,6 +46,8 @@ function CreateBook() {
       genereRef.current.value = "";
       coverImageRef.current.value = "";
       bookPdfRef.current.value = "";
+
+      navigate("/dashboard/books");
     },
     onError: (err) => {
       console.log(`error occured while creating book :-- ${err}`);

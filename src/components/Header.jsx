@@ -7,13 +7,13 @@ function Header() {
   const { state, isMobile } = useSidebar();
 
   return (
-    <header
-      className="flex fixed z-40 bg-white  right-0 top-0 border-b-2 py-2 px-6 items-center transition-[left] duration-200 ease-in-out justify-between"
+        <header
+      className="flex fixed z-40 w-full right-0 top-0 items-center justify-between border-b bg-white px-4 py-2 shadow-md transition-all duration-300 ease-in-out sm:px-6"
       style={{ left: !isMobile && state == "expanded" ? "16rem" : "0" }}
     >
-      <div className="flex items-center">
-        <SidebarTrigger className="md:h-[3rem] md:w-[3rem]" />
-        <SearchForm className="md:w-[17rem]" />
+      <div className="flex items-center gap-2 sm:gap-4">
+        <SidebarTrigger className="h-10 w-10" />
+        <SearchForm className="w-32 sm:w-full sm:max-w-xs" />
       </div>
       <div className="flex items-center gap-2.5">
         <LogoutButton />
